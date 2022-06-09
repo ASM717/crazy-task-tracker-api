@@ -1,11 +1,9 @@
-package code.task.tracker.api.store.entities;
+package code.task.tracker.store.entities;
 
 import lombok.*;
-import lombok.experimental.FieldDefaults;
 
 import javax.persistence.*;
 import java.time.Instant;
-import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -14,10 +12,8 @@ import java.util.List;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-//@FieldDefaults(level = AccessLevel.PRIVATE) //?
-@Table(name = "project")
-public class ProjectEntity {
-
+@Table(name = "task")
+public class TaskEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long id;
@@ -29,8 +25,5 @@ public class ProjectEntity {
     @Builder.Default
     private Instant createdAt = Instant.now();
 
-    @OneToMany
-    @Builder.Default
-    private List<TaskStateEntity> taskState = new ArrayList<>();
-
+    private String description;
 }

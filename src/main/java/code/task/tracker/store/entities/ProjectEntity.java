@@ -1,4 +1,4 @@
-package code.task.tracker.api.store.entities;
+package code.task.tracker.store.entities;
 
 import lombok.*;
 
@@ -13,16 +13,16 @@ import java.util.List;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "task_state")
-public class TaskStateEntity {
+//@FieldDefaults(level = AccessLevel.PRIVATE) //?
+@Table(name = "project")
+public class ProjectEntity {
+
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    private Long id;
+    private Long columnId;
 
     @Column(unique = true)
     private String name;
-
-    private Long ordinal;
 
     // для работы со временем в базе данных
     @Builder.Default
@@ -30,5 +30,7 @@ public class TaskStateEntity {
 
     @OneToMany
     @Builder.Default
-    private List<TaskEntity> tasks = new ArrayList<>();
+    @JoinColumn(name = "project_id", referencedColumnName = "columnId")
+    private List<TaskStateEntity> taskState = new ArrayList<>();
+
 }

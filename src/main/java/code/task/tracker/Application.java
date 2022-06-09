@@ -1,4 +1,4 @@
-package code.task.tracker.api;
+package code.task.tracker;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
