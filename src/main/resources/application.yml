@@ -1,0 +1,10 @@
+---
+  server:
+    port: 8080
+
+  spring:
+    datasource:
+      url: jdbc:postgresql://localhost:5432/postgres
+      username: gastellsky
+      password: qwerty
+      driver-class-name: org.postgresql.Driver
