@@ -1,15 +1,20 @@
 package code.task.tracker.api.store.entities;
 
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
+import lombok.experimental.FieldDefaults;
 
 import javax.persistence.*;
 import java.time.Instant;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
 @Getter
 @Setter
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
+//@FieldDefaults(level = AccessLevel.PRIVATE) //?
 @Table(name = "project")
 public class ProjectEntity {
 
@@ -21,9 +26,11 @@ public class ProjectEntity {
     private String name;
 
     // для работы со временем в базе данных
+    @Builder.Default
     private Instant createdAt = Instant.now();
 
     @OneToMany
-    private List<TaskStateEntity> taskState;
+    @Builder.Default
+    private List<TaskStateEntity> taskState = new ArrayList<>();
 
 }

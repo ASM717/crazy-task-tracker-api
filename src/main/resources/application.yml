@@ -4,7 +4,10 @@
 
   spring:
     datasource:
-      url: jdbc:postgresql://localhost:5432/postgres
+      url: jdbc:postgresql://localhost:5432/crazy-task-api
       username: gastellsky
       password: qwerty
       driver-class-name: org.postgresql.Driver
+    jpa:
+      hibernate:
+        ddl-auto: update
