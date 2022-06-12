@@ -1,6 +1,7 @@
 package code.task.tracker.api.controllers;
 
 import code.task.tracker.api.dto.ProjectDto;
+import code.task.tracker.api.exception.BadRequestException;
 import code.task.tracker.api.factories.ProjectDtoFactory;
 import code.task.tracker.store.entities.ProjectEntity;
 import code.task.tracker.store.repositories.ProjectRepository;
@@ -28,7 +29,15 @@ public class ProjectController {
     @PostMapping(CREATE_PROJECT)
     public ProjectDto createProject(@RequestParam String name) {
 
-//        ProjectEntity project = projectRepository.
+        projectRepository
+                .findByName(name)
+                .ifPresent(project -> {
+                    try {
+                        throw new BadRequestException(String.format("Project \"%s\" already exist.", name));
+                    } catch (BadRequestException e) {
+                        throw new RuntimeException(e);
+                    }
+                });
         return null;
         //TODO uncommit and insert entity
         //return projectDtoFactory.makeProjectDto();
