@@ -38,9 +38,13 @@ public class ProjectController {
                         throw new RuntimeException(e);
                     }
                 });
-        return null;
-        //TODO uncommit and insert entity
-        //return projectDtoFactory.makeProjectDto();
-    }
 
+        ProjectEntity projectEntity = projectRepository.saveAndFlush(
+                ProjectEntity.builder()
+                        .name(name)
+                        .build()
+        );
+
+        return projectDtoFactory.makeProjectDto(projectEntity);
+    }
 }
